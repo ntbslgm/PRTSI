@@ -1,0 +1,36 @@
+digraph {
+	input [label="Input
+(batch_size, input_channels, sequence_len)"]
+	conv1 [label="Conv1D
+(kernel_size=5, out_channels=64)"]
+	bn1 [label="BatchNorm1D
+(64)"]
+	relu1 [label=ReLU]
+	maxpool1 [label="MaxPool1D
+(kernel_size=2)"]
+	dropout1 [label="Dropout
+(rate=0.5)"]
+	conv2 [label="Conv1D
+(kernel_size=8, out_channels=128)"]
+	bn2 [label="BatchNorm1D
+(128)"]
+	relu2 [label=ReLU]
+	maxpool2 [label="MaxPool1D
+(kernel_size=2)"]
+	conv3 [label="Conv1D
+(kernel_size=8, out_channels=256)"]
+	bn3 [label="BatchNorm1D
+(256)"]
+	relu3 [label=ReLU]
+	maxpool3 [label="MaxPool1D
+(kernel_size=2)"]
+	aap [label="AdaptiveAvgPool1D
+(features_len)"]
+	flatten [label=Flatten]
+	output [label="Output
+(batch_size, 256 * features_len)"]
+	input_conv1 -> conv1_bn1
+	conv1_bn1 -> bn1_relu1
+	bn1_relu1 -> relu1_maxpool1
+	relu1_maxpool1 -> maxpool1_dropout1
+}
